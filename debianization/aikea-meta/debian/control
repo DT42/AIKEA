@@ -1,0 +1,13 @@
+Source: aikea-meta
+Section: unknown
+Priority: optional
+Maintainer: Bofu Chen (bafu) <bofu@dt42.io>
+Build-Depends: debhelper (>=9)
+Standards-Version: 3.9.6
+Homepage: https://aikea.cool
+
+Package: aikea-meta
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: AIKEA meta package
+ This package is a hook for bootstraping AIKEA system update.
