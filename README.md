@@ -6,6 +6,10 @@ PRIVATE, TRANSPARENT, SMART - Protect Home With D.AI.Y Camera that puts your pri
 
 # AIKEA Concept
 
+We are happy and proud that Mozilla interviewed AIKEA in the **Internet Health Report**. Please read the article for more stories behind AIKEA!
+
+  * [Privacy Included: Rethinking the Smart Home - A special edition of the Internet Health Report (2019)](https://foundation.mozilla.org/en/privacy-included/)
+
 The naming comes from "AI + IKEA" because we want to democratize edge AI computation.
 
 We think that AI technology should make our daily life better without sacrificing our privacy. It will be cool that if we can build our own AI applications as easy as assembling an IKEA furniture.
