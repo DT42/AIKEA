@@ -98,6 +98,24 @@ def main():
 
     duration = lambda t: (datetime.now() - t).microseconds / 1000
 
+    meta = {
+        'roi': [
+            {
+                'top': 50,
+                #'left': 341,
+                #'bottom': 500,
+                #'right': 682,
+                #'left': 640,
+                #'bottom': 980,
+                #'right': 1280,
+                'left': 10,
+                'bottom': 600,
+                'right': 600,
+                'overlap_threshold': 0.5
+            }
+        ]
+    }
+
     if args['mode'] == 'stream':
         counter = 0
         # Check input stream source
@@ -160,23 +178,7 @@ def main():
                 obj = {}
                 obj['timestamp'] = datetime.now().isoformat()
                 obj['bytes'] = payload.stringify_jpg(jpg_bytes)
-                obj['meta'] = {
-                    'roi': [
-                        {
-                            'top': 50,
-                            #'left': 341,
-                            #'bottom': 500,
-                            #'right': 682,
-                            #'left': 640,
-                            #'bottom': 980,
-                            #'right': 1280,
-                            'left': 10,
-                            'bottom': 600,
-                            'right': 600,
-                            'overlap_threshold': 0.5
-                        }
-                    ]
-                }
+                obj['meta'] = meta
                 logger.debug('timestamp: {}'.format(obj['timestamp']))
                 logger.debug('bytes len: {}'.format(len(obj['bytes'])))
                 logger.debug('meta: {}'.format(obj['meta']))
@@ -188,10 +190,17 @@ def main():
     elif args['mode'] == 'file':
         # Prepare MQTT payload
         im = cv2.imread(args['filepath'])
-        retval, jpg_bytes = cv2.imencode('.jpg', im)
 
         t = datetime.now()
-        mqtt_payload = payload.serialize_jpg(jpg_bytes)
+        retval, jpg_bytes = cv2.imencode('.jpg', im)
+        obj = {}
+        obj['timestamp'] = datetime.now().isoformat()
+        obj['bytes'] = payload.stringify_jpg(jpg_bytes)
+        obj['meta'] = meta
+        logger.debug('timestamp: {}'.format(obj['timestamp']))
+        logger.debug('bytes len: {}'.format(len(obj['bytes'])))
+        logger.debug('meta: {}'.format(obj['meta']))
+        mqtt_payload = payload.serialize_payload([obj])
         logger.debug('payload: {} ms'.format(duration(t)))
         logger.debug('payload size: {}'.format(len(mqtt_payload)))
 
