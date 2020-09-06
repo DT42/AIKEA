@@ -191,7 +191,21 @@ def main():
         retval, jpg_bytes = cv2.imencode('.jpg', im)
 
         t = datetime.now()
-        mqtt_payload = payload.serialize_jpg(jpg_bytes)
+        obj = {}
+        obj['timestamp'] = datetime.now().isoformat()
+        obj['bytes'] = payload.stringify_jpg(jpg_bytes)
+        obj['meta'] = {
+            'roi': [
+                {
+                    'top': 50,
+                    'left': 10,
+                    'bottom': 600,
+                    'right': 600,
+                    'overlap_threshold': 0.5
+                }
+            ]
+        }
+        mqtt_payload = payload.serialize_payload([obj])
         logger.debug('payload: {} ms'.format(duration(t)))
         logger.debug('payload size: {}'.format(len(mqtt_payload)))
 
