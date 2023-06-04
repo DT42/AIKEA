@@ -4,6 +4,8 @@
 
 PRIVATE, TRANSPARENT, SMART - Protect Home With D.AI.Y Camera that puts your privacy first. 
 
+[AIKEA User Guide](https://drive.google.com/drive/folders/12eieKbEnHhEWaYJyRplP2LQnc2QDxJAp)
+
 # AIKEA Concept
 
 We are happy and proud that Mozilla interviewed AIKEA in the **Internet Health Report**. Please read the article for more stories behind AIKEA!
